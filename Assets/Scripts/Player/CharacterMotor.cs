@@ -47,7 +47,9 @@ namespace Player
             var targetRotation = transform.eulerAngles;
             targetRotation.x = _xRotation;
             cameraTransform.eulerAngles = targetRotation;
-
+            
+            var armTransform = transform.GetChild(1);
+            armTransform.eulerAngles = targetRotation;
         }
 
         private void Update()
