@@ -960,7 +960,9 @@ MonoBehaviour:
   jumpForce: 5
   gravity: -9.81
   mouseSensitivityX: 35
-  mouseSensitivityY: 0.2
+  mouseSensitivityY: 35
+  movementSmoothingTime: 0.1
+  lookSmoothingFactor: 25
 --- !u!114 &1531237685
 MonoBehaviour:
   m_ObjectHideFlags: 0
