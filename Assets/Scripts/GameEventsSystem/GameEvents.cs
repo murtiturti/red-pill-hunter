@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GameEventsSystem
@@ -6,7 +7,7 @@ namespace GameEventsSystem
     {
         // Add events here as:
         // public static event Action/<T> OnEvent
-        
+
         // Invoke methods go here
     }
 }

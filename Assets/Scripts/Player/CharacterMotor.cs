@@ -66,8 +66,8 @@ namespace Player
             var cameraTransform = transform.GetChild(0);
             cameraTransform.localRotation = Quaternion.Slerp(cameraTransform.localRotation, _cameraTargetRotation, lookSmoothingFactor * Time.deltaTime);
             
-            var armTransform = transform.GetChild(1);
-            armTransform.localRotation = Quaternion.Slerp(armTransform.localRotation, _cameraTargetRotation, lookSmoothingFactor * Time.deltaTime);
+            //var armTransform = transform.GetChild(1);
+            //armTransform.localRotation = Quaternion.Slerp(armTransform.localRotation, _cameraTargetRotation, lookSmoothingFactor * Time.deltaTime);
         }
     }
 }
