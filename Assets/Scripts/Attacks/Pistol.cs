@@ -6,15 +6,17 @@ namespace Attacks
 {
     public class Pistol : MonoBehaviour, IWeapon
     {
-        private int _ammoCount = 10;
-        private int _ammoCapacity = 50;
+        private int _ammoCount = 20;
+        private const int _ammoCapacity = 50;
         private int _inClipCount = 10;
         private int _inClipCapacity = 10;
 
         public float cooldown = 0.2f;
         private bool _canFire = true;
         
-        public void Attack()
+        private static readonly int Attack1 = Animator.StringToHash("Fired");
+        
+        public int Attack()
         {
             if (_inClipCount > 0 && _canFire)
             {
@@ -25,11 +27,15 @@ namespace Attacks
                 Debug.Log("Fired!");
                 _canFire = false;
                 Cooldown();
+                return Attack1;
             }
             else if (_inClipCount == 0 && _canFire)
             {
                 Reload();
+                return 0;
             }
+
+            return 0;
         }
 
         public void Reload()

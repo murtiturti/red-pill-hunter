@@ -2,6 +2,6 @@ namespace Attacks
 {
     public interface IWeapon
     {
-        void Attack();
+        int Attack(); // return Animation trigger if success, 0 otherwise
     }
 }

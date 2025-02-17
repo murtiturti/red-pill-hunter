@@ -53,6 +53,7 @@ namespace Player
             if (context.performed)
             {
                 // Interrupt current weapon
+                _weaponManager.InterruptAttack();
                 // Switch
                 _weaponManager.SwitchWeapon(1);
             }
@@ -62,6 +63,7 @@ namespace Player
         {
             if (context.performed)
             {
+                _weaponManager.InterruptAttack();
                 _weaponManager.SwitchWeapon(0);
             }
         }

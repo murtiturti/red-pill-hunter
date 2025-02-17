@@ -879,7 +879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1075845532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1218,6 +1218,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 1645988142}
   - {fileID: 1075845531}
+  armAnimator: {fileID: 81928499}
+  weaponSwitchThreshold: 0.4
 --- !u!1 &1643531139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1645988143
 Transform:
   m_ObjectHideFlags: 0
