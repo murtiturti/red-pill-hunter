@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Enemy;
 using UnityEngine;
 
 namespace Attacks
@@ -13,9 +14,19 @@ namespace Attacks
 
         public float cooldown = 0.2f;
         private bool _canFire = true;
+        public float range = 50f;
+        public float impactForce = 20f;
+        public LayerMask enemyLayer;
         
         private static readonly int Attack1 = Animator.StringToHash("Fired");
         
+        private Camera _mainCamera;
+
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+        }
+
         public int Attack()
         {
             if (_inClipCount > 0 && _canFire)
@@ -25,6 +36,7 @@ namespace Attacks
                 // Muzzle flash
                 // Raycast, kill
                 Debug.Log("Fired!");
+                FireGun();
                 _canFire = false;
                 Cooldown();
                 return Attack1;
@@ -44,14 +56,13 @@ namespace Attacks
             {
                 // if you have at least clip capacity ammo, reload full clip
                 _ammoCount -= _inClipCapacity;
-                Debug.Log("Ammo Count: " + _ammoCount);
+                _inClipCount += _inClipCapacity;
             }
             else
             {
                 // else put all you have in clip, empty ammo bag
-                _inClipCount = _ammoCount;
+                _inClipCount += _ammoCount;
                 _ammoCount = 0;
-                Debug.Log("Ammo Count: " + _ammoCount);
             }
         }
 
@@ -64,6 +75,20 @@ namespace Attacks
         {
             yield return new WaitForSeconds(cooldown);
             _canFire = true;
+        }
+
+        private void FireGun()
+        {
+            var ray = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
+            if (Physics.Raycast(ray, out var hit, range, enemyLayer))
+            {
+                Debug.Log("Hit something");
+                var enemyAi = hit.collider.GetComponent<EnemyAI>();
+                if (enemyAi != null)
+                {
+                    enemyAi.Die(ray.direction, impactForce);
+                }
+            }
         }
     }
 }
