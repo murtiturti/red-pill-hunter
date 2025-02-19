@@ -1,4 +1,5 @@
 using System;
+using GameEventsSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,14 @@ namespace Player
     {
         // Access motor and weapons manager
         private CharacterMotor _motor;
+        private WeaponManager _weaponManager;
 
         private Vector2 _moveInput;
 
         private void Awake()
         {
             _motor = GetComponent<CharacterMotor>();
+            _weaponManager = FindAnyObjectByType<WeaponManager>();
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -41,8 +44,27 @@ namespace Player
         {
             if (context.performed)
             {
-                // weapon manager
-                Debug.Log("Fire");
+                _weaponManager.Attack();
+            }
+        }
+
+        public void OnNext(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                // Interrupt current weapon
+                _weaponManager.InterruptAttack();
+                // Switch
+                _weaponManager.SwitchWeapon(1);
+            }
+        }
+
+        public void OnPrevious(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                _weaponManager.InterruptAttack();
+                _weaponManager.SwitchWeapon(0);
             }
         }
 
