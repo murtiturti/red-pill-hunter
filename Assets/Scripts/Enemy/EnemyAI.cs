@@ -18,14 +18,20 @@ namespace Enemy
         public float engageDistance = 15f;
         public float repositionDistance = 15f;
         public NavMeshAgent agent;
-
+        public GameObject gun;
+        private Rigidbody _gunRigidbody;
+        private SphereCollider _gunSphereCollider;
+        
         private Rigidbody _rb;
+        
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             _rb = GetComponent<Rigidbody>();
+            _gunRigidbody = gun.GetComponent<Rigidbody>();
+            _gunSphereCollider = gun.GetComponent<SphereCollider>();
         }
 
         // Update is called once per frame
@@ -50,7 +56,7 @@ namespace Enemy
         private void EngageBehavior()
         {
             agent.isStopped = true;
-            Debug.Log("Engaging: Stopping and shooting.");
+            // Rotate towards player
         }
 
         private void RepositionBehavior()
@@ -59,7 +65,6 @@ namespace Enemy
             var offset = -playerTransform.forward * 10f; // example offset
             var destination = playerTransform.position + offset;
             agent.SetDestination(destination);
-            Debug.Log("Repositioning: Moving to get a better view.");
         }
 
         private void IdleBehavior()
@@ -113,7 +118,9 @@ namespace Enemy
             agent.enabled = false;
             _rb.isKinematic = false;
             _rb.AddForce(hitDirection * hitForce, ForceMode.Impulse);
-            // Drop gun
+            gun.transform.parent = null;
+            _gunRigidbody.isKinematic = false;
+            _gunSphereCollider.enabled = true;
             Destroy(this);
         }
     }

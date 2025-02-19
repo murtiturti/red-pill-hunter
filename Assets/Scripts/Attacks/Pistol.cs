@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using Enemy;
+using GameEventsSystem;
 using UnityEngine;
 
 namespace Attacks
 {
     public class Pistol : MonoBehaviour, IWeapon
     {
-        private int _ammoCount = 20;
-        private const int _ammoCapacity = 50;
-        private int _inClipCount = 10;
-        private int _inClipCapacity = 10;
+        private int _ammoCount = 0;
+        private const int AmmoCapacity = 50;
+        
+        private int _inClipCount = 1;
+        private const int InClipCapacity = 10;
 
         public float cooldown = 0.2f;
         private bool _canFire = true;
@@ -52,11 +54,11 @@ namespace Attacks
 
         public void Reload()
         {
-            if (_ammoCount >= _inClipCapacity)
+            if (_ammoCount >= InClipCapacity)
             {
                 // if you have at least clip capacity ammo, reload full clip
-                _ammoCount -= _inClipCapacity;
-                _inClipCount += _inClipCapacity;
+                _ammoCount -= InClipCapacity;
+                _inClipCount += InClipCapacity;
             }
             else
             {
@@ -89,6 +91,28 @@ namespace Attacks
                     enemyAi.Die(ray.direction, impactForce);
                 }
             }
+        }
+
+        public void AddAmmo(int ammo)
+        {
+            if (_ammoCount + ammo > AmmoCapacity)
+            {
+                _ammoCount = AmmoCapacity;
+            }
+            else
+            {
+                _ammoCount += ammo;
+            }
+        }
+
+        private void OnEnable()
+        {
+            GameEvents.OnAmmoPickup += AddAmmo;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.OnAmmoPickup -= AddAmmo;
         }
     }
 }
