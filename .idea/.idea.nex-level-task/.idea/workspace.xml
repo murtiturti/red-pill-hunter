@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffd1a68f-150c-469b-a73d-810d7d0d06fb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Arm.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Arm.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/SwordSwing.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/SwordSwing.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AttackTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AttackTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/IWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/IWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Katana.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Katana.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/WeaponManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/WeaponManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="ffd1a68f-150c-469b-a73d-810d7d0d06fb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +93,7 @@
       <updated>1739663184432</updated>
       <workItem from="1739663185900" duration="9791000" />
       <workItem from="1739738740087" duration="2353000" />
-      <workItem from="1739820124860" duration="6708000" />
+      <workItem from="1739820124860" duration="6956000" />
     </task>
     <servers />
   </component>
