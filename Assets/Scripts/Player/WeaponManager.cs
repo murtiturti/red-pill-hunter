@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Attacks;
+using GameEventsSystem;
 using UnityEngine;
+using Util;
 
 namespace Player
 {
@@ -22,6 +24,7 @@ namespace Player
 
         [Range(0f, 1f)]
         public float weaponSwitchThreshold = 0.7f;
+        public IntVariable AmmoCount;
 
         private void Start()
         {
@@ -71,6 +74,21 @@ namespace Player
                 }
                 yield return null;
             }
+        }
+
+        private void AddAmmo(int ammo)
+        {
+            AmmoCount.Value += ammo;
+        }
+        
+        private void OnEnable()
+        {
+            GameEvents.OnAmmoPickup += AddAmmo;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.OnAmmoPickup -= AddAmmo;
         }
     }
 }

@@ -3,22 +3,26 @@ using System.Collections;
 using Enemy;
 using GameEventsSystem;
 using UnityEngine;
+using Util;
 
 namespace Attacks
 {
     public class Pistol : MonoBehaviour, IWeapon
     {
-        private int _ammoCount = 0;
-        private const int AmmoCapacity = 50;
-        
-        private int _inClipCount = 1;
-        private const int InClipCapacity = 10;
-
         public float cooldown = 0.2f;
         private bool _canFire = true;
         public float range = 50f;
         public float impactForce = 20f;
         public LayerMask enemyLayer;
+        public IntVariable AmmoCount;
+        
+        [SerializeField]
+        private int _ammoCount = 0;
+        private const int AmmoCapacity = 50;
+        
+        [SerializeField]
+        private int _inClipCount = 1;
+        private const int InClipCapacity = 10;
         
         private static readonly int Attack1 = Animator.StringToHash("Fired");
         
@@ -66,6 +70,8 @@ namespace Attacks
                 _inClipCount += _ammoCount;
                 _ammoCount = 0;
             }
+
+            AmmoCount.Value = _ammoCount;
         }
 
         private void Cooldown()
@@ -93,26 +99,9 @@ namespace Attacks
             }
         }
 
-        public void AddAmmo(int ammo)
-        {
-            if (_ammoCount + ammo > AmmoCapacity)
-            {
-                _ammoCount = AmmoCapacity;
-            }
-            else
-            {
-                _ammoCount += ammo;
-            }
-        }
-
         private void OnEnable()
         {
-            GameEvents.OnAmmoPickup += AddAmmo;
-        }
-
-        private void OnDisable()
-        {
-            GameEvents.OnAmmoPickup -= AddAmmo;
+            _ammoCount = Mathf.Clamp(AmmoCount.Value, 0, AmmoCapacity);
         }
     }
 }

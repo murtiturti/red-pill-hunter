@@ -9,7 +9,7 @@ namespace Enemy
         
         public enum AIState
         {
-            Idle, Reposition, Engage
+            Idle, Reposition, Engage, Dead
         }
         
         public AIState state = AIState.Idle;
@@ -23,6 +23,7 @@ namespace Enemy
         private SphereCollider _gunSphereCollider;
         
         private Rigidbody _rb;
+        private Split _split;
         
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,11 +33,17 @@ namespace Enemy
             _rb = GetComponent<Rigidbody>();
             _gunRigidbody = gun.GetComponent<Rigidbody>();
             _gunSphereCollider = gun.GetComponent<SphereCollider>();
+            _split = GetComponent<Split>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (state == AIState.Dead)
+            {
+                return;
+            }
+            
             UpdateState();
 
             switch (state)
@@ -122,6 +129,16 @@ namespace Enemy
             _gunRigidbody.isKinematic = false;
             _gunSphereCollider.enabled = true;
             Destroy(this);
+        }
+
+        public void Split()
+        {
+            state = AIState.Dead;
+            agent.enabled = false;
+            gun.transform.parent = null;
+            _gunRigidbody.isKinematic = false;
+            _gunSphereCollider.enabled = true;
+            _split.GenerateSplit();
         }
     }
 }
