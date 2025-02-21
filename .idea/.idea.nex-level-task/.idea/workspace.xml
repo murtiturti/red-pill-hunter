@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ffd1a68f-150c-469b-a73d-810d7d0d06fb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/SwordSwing.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/SwordSwing.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Katana.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Katana.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/WeaponManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/WeaponManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameEventsSystem/GameEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameEventsSystem/GameEvents.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attacks/IWeapon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy/Aim.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Util/IntVariable.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -103,7 +104,8 @@
       <workItem from="1739738740087" duration="2353000" />
       <workItem from="1739820124860" duration="6956000" />
       <workItem from="1739927541494" duration="8009000" />
-      <workItem from="1740024960464" duration="5257000" />
+      <workItem from="1740024960464" duration="5332000" />
+      <workItem from="1740086623457" duration="9889000" />
     </task>
     <servers />
   </component>

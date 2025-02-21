@@ -20,9 +20,9 @@ namespace Attacks
         public void HitCheck()
         {
             var colliders = Physics.OverlapSphere(hitPoint.position, hitRadius, collisionMask);
-            foreach (var collider in colliders)
+            foreach (var c in colliders)
             {
-                var enemyController = collider.GetComponent<EnemyAI>();
+                var enemyController = c.GetComponent<EnemyAI>();
                 if (enemyController != null)
                 {
                     enemyController.Split();

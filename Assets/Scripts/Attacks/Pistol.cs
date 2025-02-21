@@ -9,8 +9,9 @@ namespace Attacks
 {
     public class Pistol : MonoBehaviour, IWeapon
     {
-        public float cooldown = 0.2f;
         private bool _canFire = true;
+        
+        [Header("Gun Settings")]
         public float range = 50f;
         public float impactForce = 20f;
         public LayerMask enemyLayer;
@@ -27,10 +28,13 @@ namespace Attacks
         private static readonly int Attack1 = Animator.StringToHash("Fired");
         
         private Camera _mainCamera;
+        private Cooldown _cooldownComponent;
 
         private void Start()
         {
             _mainCamera = Camera.main;
+            _cooldownComponent = GetComponent<Cooldown>();
+            _cooldownComponent.OnCooldownOver += OnCooldownEvent;
         }
 
         public int Attack()
@@ -38,16 +42,15 @@ namespace Attacks
             if (_inClipCount > 0 && _canFire)
             {
                 _inClipCount--;
-                // Animation
                 // Muzzle flash
-                // Raycast, kill
                 Debug.Log("Fired!");
                 FireGun();
                 _canFire = false;
-                Cooldown();
+                //Cooldown();
+                _cooldownComponent.StartCooldown();
                 return Attack1;
             }
-            else if (_inClipCount == 0 && _canFire)
+            if (_inClipCount == 0 && _canFire)
             {
                 Reload();
                 return 0;
@@ -74,14 +77,8 @@ namespace Attacks
             AmmoCount.Value = _ammoCount;
         }
 
-        private void Cooldown()
+        private void OnCooldownEvent()
         {
-            StartCoroutine(CooldownTimer());
-        }
-
-        private IEnumerator CooldownTimer()
-        {
-            yield return new WaitForSeconds(cooldown);
             _canFire = true;
         }
 
