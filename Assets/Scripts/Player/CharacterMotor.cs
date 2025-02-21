@@ -29,8 +29,18 @@ namespace Player
 
         public void SetMovementInput(Vector3 inputDirection)
         {
-            var targetVelocity = transform.TransformDirection(inputDirection.normalized) * walkSpeed;
-            _currentVelocity = Vector3.SmoothDamp(_currentVelocity, targetVelocity, ref _smoothVelocity, movementSmoothingTime);
+            // Compute the target horizontal velocity only.
+            var targetHorizontalVelocity = transform.TransformDirection(inputDirection.normalized) * walkSpeed;
+    
+            // Keep the current vertical velocity intact.
+            var currentVerticalVelocity = _currentVelocity.y;
+    
+            // Smooth the horizontal velocity only.
+            var currentHorizontalVelocity = new Vector3(_currentVelocity.x, 0, _currentVelocity.z);
+            currentHorizontalVelocity = Vector3.SmoothDamp(currentHorizontalVelocity, targetHorizontalVelocity, ref _smoothVelocity, movementSmoothingTime);
+    
+            // Combine the new horizontal velocity with the existing vertical velocity.
+            _currentVelocity = currentHorizontalVelocity + new Vector3(0, currentVerticalVelocity, 0);
         }
 
         public void Jump()
@@ -45,7 +55,6 @@ namespace Player
         {
             transform.Rotate(transform.up, lookDelta.x * mouseSensitivityX * Time.deltaTime);
             
-            var cameraTransform = transform.GetChild(0);
             _xRotation -= lookDelta.y * mouseSensitivityY * Time.deltaTime;
             _xRotation = Mathf.Clamp(_xRotation, -85f, 90f);
             
