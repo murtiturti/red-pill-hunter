@@ -25,6 +25,7 @@ namespace Enemy
         public float repositionDistance = 30f;
         private NavMeshAgent _agent;
         public GameObject gun;
+        public GameObject bombPrefab;
         public GameObject projectilePrefab;
         private Rigidbody _gunRigidbody;
         private SphereCollider _gunSphereCollider;
@@ -87,10 +88,22 @@ namespace Enemy
         {
             _agent.isStopped = true;
             _aimHelper.LookAtTarget();
+            var threshold = 0.1f;
+            var value = Random.Range(0f, 1f);
+            
             if (_aimHelper.Fire(engageDistance) && _canFire)
             {
                 var directionToPlayer = (playerTransform.position - transform.position).normalized;
-                var projectile = Instantiate(projectilePrefab, gun.transform.position + gun.transform.forward * 0.5f, Quaternion.LookRotation(directionToPlayer, Vector3.up));
+                
+                if (value < threshold)
+                {
+                    // Bomb attack
+                    var bomb = Instantiate(bombPrefab, transform.position + transform.forward * 0.75f, Quaternion.identity);
+                    bomb.GetComponent<Rigidbody>().AddForce(directionToPlayer * 5f + Vector3.up * 0.75f, ForceMode.Impulse);
+                    return;
+                }
+                
+                var projectile = Instantiate(projectilePrefab, gun.transform.position + gun.transform.forward * 0.5f, Quaternion.identity);
                 projectile.GetComponent<Projectile>().Shoot(directionToPlayer);
                 _canFire = false;
             }

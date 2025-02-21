@@ -9,7 +9,7 @@ namespace Attacks
 {
     public class Pistol : MonoBehaviour, IWeapon
     {
-        private bool _canFire = true;
+        private bool _canFire;
         
         [Header("Gun Settings")]
         public float range = 50f;
@@ -35,6 +35,7 @@ namespace Attacks
             _mainCamera = Camera.main;
             _cooldownComponent = GetComponent<Cooldown>();
             _cooldownComponent.OnCooldownOver += OnCooldownEvent;
+            _canFire = true;
         }
 
         public int Attack()
