@@ -16,11 +16,10 @@ namespace Attacks
         public float impactForce = 20f;
         public LayerMask enemyLayer;
         public IntVariable AmmoCount;
-        
-        private const int AmmoCapacity = 50;
+        public IntVariable inClipCountVariable;
         
         [SerializeField]
-        private int _inClipCount = 1;
+        private int _inClipCount = 10;
         private const int InClipCapacity = 10;
         
         private static readonly int Attack1 = Animator.StringToHash("Fired");
@@ -34,6 +33,9 @@ namespace Attacks
             _cooldownComponent = GetComponent<Cooldown>();
             _cooldownComponent.OnCooldownOver += OnCooldownEvent;
             _canFire = true;
+            _inClipCount = 10;
+            inClipCountVariable.Value = _inClipCount;
+
         }
 
         public int Attack()
@@ -42,19 +44,18 @@ namespace Attacks
             if (_inClipCount > 0 && _canFire)
             {
                 _inClipCount--;
-                Debug.Log("Fired!");
+                inClipCountVariable.Value = _inClipCount;
                 FireGun();
                 _canFire = false;
-                //Cooldown();
                 _cooldownComponent.StartCooldown();
                 return Attack1;
             }
             if (_inClipCount == 0 && _canFire)
             {
                 Reload();
+                inClipCountVariable.Value = _inClipCount;
                 return 0;
             }
-
             return 0;
         }
 
@@ -84,7 +85,6 @@ namespace Attacks
             var ray = _mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
             if (Physics.Raycast(ray, out var hit, range, enemyLayer))
             {
-                Debug.Log("Hit something");
                 var enemyAi = hit.collider.GetComponent<EnemyAI>();
                 if (enemyAi != null)
                 {
@@ -95,7 +95,7 @@ namespace Attacks
 
         private void OnEnable()
         {
-            AmmoCount.Value = Mathf.Clamp(AmmoCount.Value, 0, AmmoCapacity);
+            AmmoCount.Value = Mathf.Clamp(AmmoCount.Value, 0, 50);
         }
     }
 }

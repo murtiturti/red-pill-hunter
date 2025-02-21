@@ -19,13 +19,6 @@ namespace Player
             _weaponManager = FindAnyObjectByType<WeaponManager>();
         }
 
-        private void Start()
-        {
-            // TODO: MOVE TO GAMEMANAGER
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
         public void OnMove(InputAction.CallbackContext context)
         {
             _moveInput = context.ReadValue<Vector2>();

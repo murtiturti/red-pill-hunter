@@ -38,6 +38,8 @@ namespace Enemy
         private float cooldownTime = 0.4f;
         private float _cooldownTimer = 0;
         private bool _canFire = true;
+
+        public IntVariable killCount;
         
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -166,6 +168,7 @@ namespace Enemy
 
         public void Die(Vector3 hitDirection, float hitForce)
         {
+            killCount.Value++;
             _agent.enabled = false;
             _rb.isKinematic = false;
             _rb.AddForce(hitDirection * hitForce, ForceMode.Impulse);
@@ -177,6 +180,7 @@ namespace Enemy
 
         public void Split()
         {
+            killCount.Value++;
             state = AIState.Dead;
             _agent.enabled = false;
             gun.transform.parent = null;

@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffd1a68f-150c-469b-a73d-810d7d0d06fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.nex-level-task/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/mGround.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/mGround.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTest/NavMesh-NavMesh Surface.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTest/NavMesh-NavMesh Surface.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Attacks/Pistol.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/CharacterMotor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/CharacterMotor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Skybox/Night.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Skybox/Night.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +107,7 @@
       <workItem from="1739820124860" duration="6956000" />
       <workItem from="1739927541494" duration="8009000" />
       <workItem from="1740024960464" duration="5332000" />
-      <workItem from="1740086623457" duration="19491000" />
+      <workItem from="1740086623457" duration="24124000" />
     </task>
     <servers />
   </component>
