@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Enemy;
 using GameEventsSystem;
+using Sound;
 using UnityEngine;
 using Util;
 
@@ -26,6 +27,9 @@ namespace Attacks
         
         private Camera _mainCamera;
         private Cooldown _cooldownComponent;
+        
+        [SerializeField]
+        private PlayWeaponSound soundComponent;
 
         private void Start()
         {
@@ -61,6 +65,7 @@ namespace Attacks
 
         public void Reload()
         {
+            soundComponent.PlayReload();
             if (AmmoCount.Value >= InClipCapacity)
             {
                 // if you have at least clip capacity ammo, reload full clip
