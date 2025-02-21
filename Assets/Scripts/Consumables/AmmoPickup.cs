@@ -1,6 +1,7 @@
 using System;
 using GameEventsSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Consumables
 {
@@ -11,7 +12,7 @@ namespace Consumables
             
             if (other.gameObject.CompareTag("Player"))
             {
-                GameEvents.TriggerAmmoPickup(10);
+                GameEvents.TriggerAmmoPickup(Random.Range(3, 8));
                 Destroy(gameObject);
             }
         }

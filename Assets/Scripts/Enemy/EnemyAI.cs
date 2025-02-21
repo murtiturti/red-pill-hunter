@@ -41,6 +41,8 @@ namespace Enemy
 
         public IntVariable killCount;
         
+        private AudioSource _audioSource;
+        
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -52,6 +54,7 @@ namespace Enemy
             _split = GetComponent<Split>();
             _aimHelper = GetComponent<Aim>();
             _aimHelper.SetTarget(playerTransform);
+            _audioSource = GetComponent<AudioSource>();
         }
         
 
@@ -101,12 +104,13 @@ namespace Enemy
                 {
                     // Bomb attack
                     var bomb = Instantiate(bombPrefab, transform.position + transform.forward * 0.75f, Quaternion.identity);
-                    bomb.GetComponent<Rigidbody>().AddForce(directionToPlayer * 5f + Vector3.up * 0.75f, ForceMode.Impulse);
+                    bomb.GetComponent<Rigidbody>().AddForce(directionToPlayer * 3f + Vector3.up * 0.5f, ForceMode.Impulse);
                     return;
                 }
                 
                 var projectile = Instantiate(projectilePrefab, gun.transform.position + gun.transform.forward * 0.5f, Quaternion.identity);
-                projectile.GetComponent<Projectile>().Shoot(directionToPlayer);
+                projectile.GetComponent<Projectile>().Shoot(gun.transform.forward);
+                _audioSource.Play();
                 _canFire = false;
             }
         }
