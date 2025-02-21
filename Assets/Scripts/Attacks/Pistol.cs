@@ -17,8 +17,6 @@ namespace Attacks
         public LayerMask enemyLayer;
         public IntVariable AmmoCount;
         
-        [SerializeField]
-        private int _ammoCount = 0;
         private const int AmmoCapacity = 50;
         
         [SerializeField]
@@ -40,10 +38,10 @@ namespace Attacks
 
         public int Attack()
         {
+            Debug.Log(_canFire);
             if (_inClipCount > 0 && _canFire)
             {
                 _inClipCount--;
-                // Muzzle flash
                 Debug.Log("Fired!");
                 FireGun();
                 _canFire = false;
@@ -62,20 +60,18 @@ namespace Attacks
 
         public void Reload()
         {
-            if (_ammoCount >= InClipCapacity)
+            if (AmmoCount.Value >= InClipCapacity)
             {
                 // if you have at least clip capacity ammo, reload full clip
-                _ammoCount -= InClipCapacity;
+                AmmoCount.Value -= InClipCapacity;
                 _inClipCount += InClipCapacity;
             }
             else
             {
                 // else put all you have in clip, empty ammo bag
-                _inClipCount += _ammoCount;
-                _ammoCount = 0;
+                _inClipCount += AmmoCount.Value;
+                AmmoCount.Value = 0;
             }
-
-            AmmoCount.Value = _ammoCount;
         }
 
         private void OnCooldownEvent()
@@ -99,7 +95,7 @@ namespace Attacks
 
         private void OnEnable()
         {
-            _ammoCount = Mathf.Clamp(AmmoCount.Value, 0, AmmoCapacity);
+            AmmoCount.Value = Mathf.Clamp(AmmoCount.Value, 0, AmmoCapacity);
         }
     }
 }
