@@ -8,6 +8,7 @@ namespace Consumables
     {
         private void OnTriggerEnter(Collider other)
         {
+            
             if (other.gameObject.CompareTag("Player"))
             {
                 GameEvents.TriggerAmmoPickup(10);

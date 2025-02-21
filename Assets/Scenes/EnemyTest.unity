@@ -823,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 497389906}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: ArtHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,10 +951,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 606104676}
-  - component: {fileID: 606104677}
   - component: {fileID: 606104678}
-  - component: {fileID: 606104679}
   - component: {fileID: 606104680}
+  - component: {fileID: 606104681}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -979,26 +978,6 @@ Transform:
   - {fileID: 1781230967}
   m_Father: {fileID: 617595300}
   m_LocalEulerAnglesHint: {x: 0, y: -7.92, z: 0}
---- !u!114 &606104677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606104675}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a9db42427402349b01b98936fbfb97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 50
-  impactForce: 100
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  AmmoCount: {fileID: 11400000, guid: 3c0defcefc4db244bba7aea8967510dc, type: 2}
-  _ammoCount: 0
-  _inClipCount: 1
 --- !u!54 &606104678
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1026,18 +1005,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &606104679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606104675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b16ff73c29681b84f90aafda0d42d2aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &606104680
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1059,6 +1026,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &606104681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606104675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16ff73c29681b84f90aafda0d42d2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &617595299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,7 +1245,7 @@ GameObject:
   - component: {fileID: 667364944}
   - component: {fileID: 667364943}
   - component: {fileID: 667364942}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Goggles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1811,7 +1790,6 @@ GameObject:
   - component: {fileID: 1040789017}
   - component: {fileID: 1040789019}
   - component: {fileID: 1040789020}
-  - component: {fileID: 1040789021}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -1855,8 +1833,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 617595300}
   - {fileID: 497389906}
+  - {fileID: 617595300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1040789016
@@ -1902,9 +1880,10 @@ MonoBehaviour:
   state: 0
   playerTransform: {fileID: 1531237682}
   engageDistance: 15
-  repositionDistance: 15
+  repositionDistance: 30
   gun: {fileID: 606104675}
   projectilePrefab: {fileID: 225545049601756823, guid: 2ba4de6bf4762f540b7ac90408886e7c, type: 3}
+  cooldownTime: 0.4
 --- !u!195 &1040789018
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1958,19 +1937,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 192
---- !u!114 &1040789021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040789013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5c9b237e17a7e47afc27d9277d05e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeInSeconds: 0.4
 --- !u!1 &1075845531
 GameObject:
   m_ObjectHideFlags: 0
@@ -2625,7 +2591,7 @@ GameObject:
   - component: {fileID: 1761739092}
   - component: {fileID: 1761739095}
   - component: {fileID: 1761739094}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Goggles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3049,7 +3015,7 @@ GameObject:
   - component: {fileID: 1964530340}
   - component: {fileID: 1964530342}
   - component: {fileID: 1964530341}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

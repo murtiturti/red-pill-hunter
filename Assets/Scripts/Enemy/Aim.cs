@@ -13,7 +13,6 @@ namespace Enemy
         {
             _target = target;
         }
-        
 
         public void LookAtTarget()
         {
@@ -25,8 +24,8 @@ namespace Enemy
 
         public bool Fire(float maxDistance)
         {
-            var directionToTarget = (_target.position - transform.position).normalized;
-            var ray = new Ray(transform.position, directionToTarget);
+            var directionToTarget = (_target.position - projectileExitPosition.position).normalized;
+            var ray = new Ray(projectileExitPosition.position, directionToTarget);
 
             if (Physics.Raycast(ray, out var hit, maxDistance, layerMask))
             {

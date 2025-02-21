@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Util;
-using Math = System.Math;
+
 
 namespace Enemy
 {
@@ -32,7 +33,9 @@ namespace Enemy
         private Split _split;
         private Aim _aimHelper;
         
-        private Cooldown _cooldown;
+        [SerializeField]
+        private float cooldownTime = 0.4f;
+        private float _cooldownTimer = 0;
         private bool _canFire = true;
         
         
@@ -46,16 +49,19 @@ namespace Enemy
             _split = GetComponent<Split>();
             _aimHelper = GetComponent<Aim>();
             _aimHelper.SetTarget(playerTransform);
-            _cooldown = GetComponent<Cooldown>();
-            _cooldown.OnCooldownOver += () =>
-            {
-                _canFire = true;
-            };
         }
+        
 
         // Update is called once per frame
         void Update()
         {
+            _cooldownTimer += Time.deltaTime;
+            if (_cooldownTimer >= cooldownTime)
+            {
+                _canFire = true;
+                _cooldownTimer = 0f;
+            }
+            
             if (state == AIState.Dead)
             {
                 return;
@@ -80,23 +86,14 @@ namespace Enemy
         private void EngageBehavior()
         {
             _agent.isStopped = true;
-            if (!_aimHelper.Fire(engageDistance))
+            _aimHelper.LookAtTarget();
+            if (_aimHelper.Fire(engageDistance) && _canFire)
             {
-                _aimHelper.LookAtTarget();
-            }
-            else
-            {
-                if (!_canFire)
-                {
-                    return;
-                }
                 var directionToPlayer = (playerTransform.position - transform.position).normalized;
-                var projectile = Instantiate(projectilePrefab, gun.transform.position, Quaternion.LookRotation(directionToPlayer));
+                var projectile = Instantiate(projectilePrefab, gun.transform.position + gun.transform.forward * 0.5f, Quaternion.LookRotation(directionToPlayer, Vector3.up));
                 projectile.GetComponent<Projectile>().Shoot(directionToPlayer);
                 _canFire = false;
-                _cooldown.StartCooldown();
             }
-            
         }
 
         private void RepositionBehavior()
@@ -104,7 +101,7 @@ namespace Enemy
             _agent.isStopped = false;
             var directionToPlayer = (playerTransform.position - transform.position).normalized;
             // reposition without passing the player
-            var offset = -directionToPlayer * Random.Range(4.5f, 10f) + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+            var offset = -directionToPlayer * Random.Range(4.5f, 10f);
             var destination = playerTransform.position + offset;
             _agent.SetDestination(destination);
         }

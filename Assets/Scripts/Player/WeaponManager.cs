@@ -29,6 +29,7 @@ namespace Player
         private void Start()
         {
             _equippedWeapon = weapons[_equippedIndex].GetComponent<IWeapon>();
+            AmmoCount.Value = 10;
         }
 
         public void Attack()
