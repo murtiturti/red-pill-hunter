@@ -3,7 +3,7 @@ by Murat Diken
 
 Windows Build: https://drive.google.com/drive/folders/1ASXE7SLaAWbPdRPmku-tVpS6fACbZJ53?usp=sharing
 WebGL Build: https://muratdiken.itch.io/red-pill-hunter
-Link to Video: https://drive.google.com/file/d/1qSsxXmQuFxHiqemUFGvGlbl6UANcMR-U/view?usp=sharing
+Link to Video: https://drive.google.com/file/d/1qSsxXmQuFxHiqemUFGvGlbl6UANcMR-U/view?usp=sharing (I appoologize for the reactions in advance :D)
 
 # Game Info
 
