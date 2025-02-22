@@ -54,3 +54,8 @@ Good luck!
 # Known Issues & Bugs
 - The bullets are really slow and hard to see
 - Enemy AI sometimes has trouble looking towards the player
+
+# Credits
+Short Gunshot.wav by JohanDeecke -- https://freesound.org/s/369528/ -- License: Attribution 3.0
+SwordSwing01 by 32cheeseman32 -- https://freesound.org/s/180837/ -- License: Attribution 4.0
+Weapons_Gun_Small_Reload_001.wav by duckduckpony -- https://freesound.org/s/204042/ -- License: Attribution 4.0
