@@ -1,113 +1,56 @@
-# FPS Game Development Outline
+# NEX Level Gaming - Technical Interview Task Submission
+by Murat Diken
 
-## Timeline (Feb 15 - Feb 21)
+Windows Build: https://drive.google.com/drive/folders/1ASXE7SLaAWbPdRPmku-tVpS6fACbZJ53?usp=sharing
+WebGL Build: https://muratdiken.itch.io/red-pill-hunter
+Link to Video: https://drive.google.com/file/d/1qSsxXmQuFxHiqemUFGvGlbl6UANcMR-U/view?usp=sharing
 
-### Feb 15-16: Core Player Mechanics
-- **Player Movement & Jumping:**
-  - Implement walking, jumping, and wall-running (on designated walls)
-  - Use `CharacterController` for smooth, frame-rate independent movement.
-- **Basic Shooting:**
-  - Pistol firing using raycasting
-  - Implement one-shot-one-kill logic with quick restart.
-- **Katana Attacks:**
-  - Melee collision detection for the katana.
-  
-### Feb 17-18: Enemies & AI
-- **Enemy Navigation:**
-  - Basic pathfinding using NavMesh or custom logic.
-- **Enemy Attacks:**
-  - Pistol & grenade firing for enemies.
-- **Damage & Death Handling:**
-  - Implement `IDamageable` interface.
+# Game Info
 
-### Feb 19: Level & Interactions
-- **Level Design:**
-  - Build the level using Unity primitives.
-- **Wall-Running Detection:**
-  - Use collision flags or raycasts for valid wall surfaces.
-- **Spawn Points:**
-  - Set up player and enemy spawn points.
+Name: Red Pill Hunter
+Type: Arcade FPS
 
-### Feb 20: Polish & UI
-- **Visual & Audio Effects:**
-  - Muzzle flash, impact effects.
-- **UI Feedback:**
-  - Ammo count, health, and kill notifications.
-- **Quick Restart Optimization:**
-  - Ensure fast level restarts without heavy delays.
+Description:
+Red Pill Hunter is a minimalist, one-level FPS built in Unity URP for Windows. 
+In this game, a single shot is lethal—both for the player and the enemies. 
+You switch between a ranged pistol and a melee katana, each offering distinct combat approaches. 
+Enemies, represented by simple capsule models, use basic AI via Unity's NavMesh to reposition and engage the player when in line-of-sight. 
+With fast restarts and a focus on precision combat, Red Pill Hunter challenges you to stay alert and make every move count.
 
-### Feb 21: Extras & Final Testing
-- **Extra Features (if time allows):**
-  - Add a second level or a boss.
-  - Experiment with custom shaders for a stylized look.
-- **Final Playtesting:**
-  - Bug fixes, polishing, and final build packaging.
+Instructions:
+You will start immediately at the arena so look out for enemies approaching!
 
----
+The goal of the game is to clear off the arena.
 
-## Architecture Overview
+Controls:
 
-### 1. **Core Player Components**
+WASD to move
+Space to jump
+LMB for attacking
+1, 2 for switching weapons
 
-#### **PlayerController**
-- **Responsibilities:**
-  - Handle input (via Unity's new Input System).
-  - Dispatch commands to `CharacterMotor` and `WeaponManager`.
-- **Key Methods:**
-  - `OnMove(InputAction.CallbackContext context)`
-  - `OnJump(InputAction.CallbackContext context)`
-  - `OnFire(InputAction.CallbackContext context)`
-  - `OnLook(InputAction.CallbackContext context)`
+The player has 2 weapons for their survival, a pistol and a katana.
 
-#### **CharacterMotor**
-- **Responsibilities:**
-  - Process movement using `CharacterController.Move()`.
-  - Handle gravity, jumping, and wall-running logic.
-  - Utilize `OnControllerColliderHit` for collision detection.
-- **Key Points:**
-  - Manual collision responses.
-  - Use collision flags and supplemental raycasts as needed.
+'1' is assigned to the Pistol
+'2' is assigned to the Katana
 
-#### **WeaponManager & Weapons**
-- **WeaponManager:**
-  - Manage active weapon and handle weapon switching.
-  - Delegate firing commands to the active weapon.
-- **Weapons:**
-  - Implement an `IWeapon` interface.
-  - **Pistol:** Use raycasting for shooting.
-  - **Katana:** Use sphere/box overlap for melee detection.
+You can switch between the two any time.
 
-### 2. **Enemy Components**
-- **EnemyAI:**
-  - Handle navigation and target detection.
-- **EnemyAttack:**
-  - Manage enemy firing and grenade throwing.
-- **Health Component:**
-  - Implement `IDamageable` for both player and enemies.
+Reloading is handled automatically. You can pick up ammo from your enemies' guns.
 
-### 3. **Global Game Management**
-- **GameManager:**
-  - Maintain game state (InGame, Paused, GameOver).
-  - Manage quick restart and level transitions.
-- **UIManager:**
-  - Update HUD elements and game notifications based on events.
+All attacks that land on the enemies will kill them instantly. 
 
----
+BUT the same goes for you as well.
 
-## Event System
+Good luck!
 
-### Using C# Events
-- **Centralized Static Class Example:**
-  ```csharp
-  public static class GameEvents {
-      public static event Action OnPlayerDeath;
-      public static event Action<int> OnPlayerDamage;
-      public static event Action OnWeaponFired;
-      public static event Action<WeaponType> OnWeaponSwitched;
-      // ... additional events
+# Additional Features
 
-      public static void TriggerPlayerDeath() {
-          OnPlayerDeath?.Invoke();
-      }
-      // ... additional trigger methods
-  }
+- Baked enemy slicing
+- Additional weapon for the player
+- Added SFX for weapons
+
+
+# Known Issues & Bugs
+- The bullets are really slow and hard to see
+- Enemy AI sometimes has trouble looking towards the player
