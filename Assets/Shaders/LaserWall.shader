@@ -5,10 +5,8 @@ Shader "Unlit/LaserWall"
         _LaserColor ("Laser Color", Color) = (1, 0, 0, 1)
         _LineFrequency ("Line Frequency", Range(1,50)) = 10.0
         _LineThickness ("Line Thickness", Range(0,1)) = 0.1
-        _MovementSpeed ("Movement Speed", Range(0,10)) = 1.0
-         _MovementAmount ("Movement Amount", Range(0,1)) = 0.75
-        _OscillationThreshold ("Oscillation Threshold", Range(0,1)) = 0.7
-        _OscillationFrequency ("Oscillation Frequency", Range(1,20)) = 10.0
+        _FarThreshold ("Far Threshold", Range(10, 1000)) = 100
+
     }
     SubShader
     {
@@ -49,10 +47,7 @@ Shader "Unlit/LaserWall"
             fixed4 _LaserColor;
             float _LineFrequency;
             float _LineThickness;
-            float _MovementSpeed;
-            float _MovementAmount;
-            float _OscillationThreshold;
-            float _OscillationFrequency;
+            float _FarThreshold;
 
             v2f vert (appdata v)
             {
@@ -67,16 +62,24 @@ Shader "Unlit/LaserWall"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                float dist2Camera = length(_WorldSpaceCameraPos - i.worldPos);
                 float repeatUV = frac(i.uv.y * _LineFrequency);
 
                 // calculate distance from center
                 float distance = abs(repeatUV - 0.5) / _LineThickness;
                 distance = 1.0 - saturate(distance / 0.5);
 
+                if(dist2Camera > _FarThreshold)
+                {
+                    // The player is far away – use a fallback effect or simply output _LaserColor.
+                    return fixed4(_LaserColor.xyz, distance);
+                }
+
                 float t = pow(distance, 6.0);
                 
                 fixed4 color = lerp(_LaserColor, fixed4(1, 1, 1, 1), t);
                 color.a = distance;
+                
                 return color;
             }
             ENDCG

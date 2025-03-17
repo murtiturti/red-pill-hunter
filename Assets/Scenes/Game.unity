@@ -310,10 +310,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 121519071}
     m_Modifications:
-    - target: {fileID: 6460346683401823368, guid: ba87250bf9d2c444686136a132b482e4, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 36ea6d26c4c43f847ae79978ddd0a243, type: 2}
     - target: {fileID: 7639077866024007126, guid: ba87250bf9d2c444686136a132b482e4, type: 3}
       propertyPath: m_Name
       value: LaserWall
