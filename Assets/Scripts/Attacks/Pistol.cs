@@ -63,6 +63,11 @@ namespace Attacks
             return 0;
         }
 
+        public bool IsSilent()
+        {
+            return false;
+        }
+
         public void Reload()
         {
             soundComponent.PlayReload();

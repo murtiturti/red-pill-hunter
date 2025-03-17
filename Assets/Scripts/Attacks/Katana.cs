@@ -17,6 +17,11 @@ namespace Attacks
             return Attack1;
         }
 
+        public bool IsSilent()
+        {
+            return true;
+        }
+
         public void HitCheck()
         {
             var colliders = Physics.OverlapSphere(hitPoint.position, hitRadius, collisionMask);

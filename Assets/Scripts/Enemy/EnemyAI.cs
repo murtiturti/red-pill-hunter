@@ -14,7 +14,7 @@ namespace Enemy
         // Internal states for the enemy behaviour
         public enum AIState
         {
-            Idle, Reposition, Engage, Dead
+            Idle, Reposition, Engage, Dead, Alert, Searching
         }
         
         public AIState state = AIState.Idle;
