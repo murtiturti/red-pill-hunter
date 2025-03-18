@@ -534,6 +534,7 @@ MonoBehaviour:
   gun: {fileID: 6070740025358019218}
   bombPrefab: {fileID: 8414471362723828389, guid: 66059af73be271f4da42cae8c278ff67, type: 3}
   projectilePrefab: {fileID: 225545049601756823, guid: 2ba4de6bf4762f540b7ac90408886e7c, type: 3}
+  soundTrace: {fileID: 11400000, guid: f8e663da2d7c60c4abc7efbaf5113936, type: 2}
   cooldownTime: 0.8
   killCount: {fileID: 11400000, guid: cfe8f9c3c10fdc24eaf2c06e92e4f2e4, type: 2}
 --- !u!114 &2806471072094869066

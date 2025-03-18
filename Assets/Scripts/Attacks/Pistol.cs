@@ -18,6 +18,7 @@ namespace Attacks
         public LayerMask enemyLayer;
         public IntVariable AmmoCount;
         public IntVariable inClipCountVariable;
+        public Vec3Variable soundTrace;
         
         [SerializeField]
         private int _inClipCount = 10;
@@ -44,7 +45,6 @@ namespace Attacks
 
         public int Attack()
         {
-            Debug.Log(_canFire);
             if (_inClipCount > 0 && _canFire)
             {
                 _inClipCount--;
@@ -52,6 +52,9 @@ namespace Attacks
                 FireGun();
                 _canFire = false;
                 _cooldownComponent.StartCooldown();
+                
+                LeaveSoundTrace();
+                
                 return Attack1;
             }
             if (_inClipCount == 0 && _canFire)
@@ -61,6 +64,11 @@ namespace Attacks
                 return 0;
             }
             return 0;
+        }
+
+        private void LeaveSoundTrace()
+        {
+            soundTrace.Value = transform.position;
         }
 
         public bool IsSilent()

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using Util;
+using Random = UnityEngine.Random;
 
 
 namespace Enemy
@@ -14,7 +16,7 @@ namespace Enemy
         // Internal states for the enemy behaviour
         public enum AIState
         {
-            Idle, Reposition, Engage, Dead, Alert, Searching
+            Idle, Reposition, Engage, Dead, Alert
         }
         
         public AIState state = AIState.Idle;
@@ -27,6 +29,7 @@ namespace Enemy
         public GameObject gun;
         public GameObject bombPrefab;
         public GameObject projectilePrefab;
+        public Vec3Variable soundTrace;
         private Rigidbody _gunRigidbody;
         private SphereCollider _gunSphereCollider;
         
@@ -42,6 +45,8 @@ namespace Enemy
         public IntVariable killCount;
         
         private AudioSource _audioSource;
+        
+        private Vector3 _gunshotPosition;
         
         
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -161,7 +166,6 @@ namespace Enemy
         
         private bool HasLineOfSight()
         {
-            // RaycastHit hit;
             var direction = (playerTransform.position - transform.position).normalized;
             if (Physics.Raycast(transform.position + Vector3.up, direction, out var hit, engageDistance))
             {
@@ -191,6 +195,21 @@ namespace Enemy
             _gunRigidbody.isKinematic = false;
             _gunSphereCollider.enabled = true;
             _split.GenerateSplit();
+        }
+
+        private void UpdateGunshotPosition(Vector3 gunshotPosition)
+        {
+            _gunshotPosition = soundTrace.Value;
+        }
+
+        private void OnEnable()
+        {
+            soundTrace.OnValueChanged += UpdateGunshotPosition;
+        }
+
+        private void OnDisable()
+        {
+            soundTrace.OnValueChanged -= UpdateGunshotPosition;
         }
     }
 }

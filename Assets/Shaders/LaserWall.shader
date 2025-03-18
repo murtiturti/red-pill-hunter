@@ -3,6 +3,7 @@ Shader "Unlit/LaserWall"
     Properties
     {
         _LaserColor ("Laser Color", Color) = (1, 0, 0, 1)
+        _ClippedColor ("Clipped Color", Color) = (0.7, 0, 0, 1)
         _LineFrequency ("Line Frequency", Range(1,50)) = 10.0
         _LineThickness ("Line Thickness", Range(0,1)) = 0.1
         _FarThreshold ("Far Threshold", Range(10, 1000)) = 100
@@ -45,6 +46,7 @@ Shader "Unlit/LaserWall"
             };
 
             fixed4 _LaserColor;
+            fixed4 _ClippedColor;
             float _LineFrequency;
             float _LineThickness;
             float _FarThreshold;
@@ -72,7 +74,7 @@ Shader "Unlit/LaserWall"
                 if(dist2Camera > _FarThreshold)
                 {
                     // The player is far away – use a fallback effect or simply output _LaserColor.
-                    return fixed4(_LaserColor.xyz, distance);
+                    return fixed4(_ClippedColor.xyz, distance);
                 }
 
                 float t = pow(distance, 6.0);
